@@ -1,0 +1,22 @@
+def divizori(n):
+    div = []
+    for i in range(1, n + 1):
+        if n % i == 0:
+            div.append(i)
+    return div
+
+def suma_divizorilor_comuni(a, b):
+    div_a = divizori(a)
+    div_b = divizori(b)
+    
+    # Găsim divizorii comuni
+    comuni = list(set(div_a).intersection(div_b))
+    
+    # Calculăm suma divizorilor comuni
+    return sum(comuni)
+
+# Exemplu de utilizare
+a = int(input("Introdu primul numar: "))
+b = int(input("Introdu al doilea numar: "))
+suma = suma_divizorilor_comuni(a, b)
+print(f"Suma divizorilor comuni ai lui {a} și {b} este: {suma}")
