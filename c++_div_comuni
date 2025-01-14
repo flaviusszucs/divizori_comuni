@@ -1,0 +1,51 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+vector<int> divizori(int n) {
+    vector<int> div;
+    for (int i = 1; i <= n; i++) {
+        if (n % i == 0) {
+            div.push_back(i);
+        }
+    }
+    return div;
+}
+
+int suma_divizorilor_comuni(int a, int b) {
+    vector<int> div_a = divizori(a);
+    vector<int> div_b = divizori(b);
+    
+    // Găsim divizorii comuni
+    vector<int> comuni;
+    for (int i = 0; i < div_a.size(); i++) {
+        for (int j = 0; j < div_b.size(); j++) {
+            if (div_a[i] == div_b[j]) {
+                comuni.push_back(div_a[i]);
+                break;
+            }
+        }
+    }
+    
+    // Calculăm suma divizorilor comuni
+    int suma = 0;
+    for (int i = 0; i < comuni.size(); i++) {
+        suma += comuni[i];
+    }
+    
+    return suma;
+}
+
+int main() {
+    int a, b;
+    cout << "Introdu primul numar: ";
+    cin >> a;
+    cout << "Introdu al doilea numar: ";
+    cin >> b;
+    
+    int suma = suma_divizorilor_comuni(a, b);
+    cout << "Suma divizorilor comuni ai lui " << a << " si " << b << " este: " << suma << endl;
+    
+    return 0;
+}
